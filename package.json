@@ -1,0 +1,13 @@
+{
+  "name": "@mod/mobile-common",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "exports": {
+    "./lib/*": "./lib/*.js",
+    "./redux/*": "./redux/*.js",
+    "./services/*": "./services/*.js",
+    "./views/*": "./views/*.js"
+  }
+}
