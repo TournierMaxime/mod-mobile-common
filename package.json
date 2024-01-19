@@ -11,6 +11,7 @@
     "./views/*": "./views/*.js"
   },
   "dependencies": {
+    "@mod/mobile-tmdb": "file:../mod-mobile-tmdb",
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-navigation/native": "^6.1.9",
     "@reduxjs/toolkit": "^2.0.1",
