@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import thunkMiddleware from 'redux-thunk'
+import { thunk as thunkMiddleware } from "redux-thunk";
 
 const createBaseStore = (reducers) => {
   const store = configureStore({
