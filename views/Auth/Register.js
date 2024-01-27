@@ -6,11 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native'
-
 import { createUser } from '../../redux/actions/auth'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
-import { registerForPushNotificationsAsync } from "../../lib/components/utils/Notifications"
+import registerForPushNotificationsAsync from "../../lib/components/utils/Notifications"
 import { AlertMessage } from '../../lib/components/utils/AlertMessage'
 import tw from 'twrnc'
 
