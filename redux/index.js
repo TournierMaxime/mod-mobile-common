@@ -12,4 +12,4 @@ const authCommonReducer = {
   confirmEmail: confirmEmailReducer
 }
 
-export default authCommonReducer
+export { authCommonReducer }

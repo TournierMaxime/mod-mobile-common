@@ -5,10 +5,8 @@
   "author": "",
   "license": "ISC",
   "exports": {
-    "./assets/*": "./assets/*.webp",
     "./lib/*": "./lib/*.js",
     "./redux/*": "./redux/*.js",
-    "./services/*": "./services/*.js",
     "./views/*": "./views/*.js"
   },
   "dependencies": {

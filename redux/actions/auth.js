@@ -7,7 +7,7 @@ import {
   CheckForgetPasswordCodeMobile,
   ResetPasswordMobile,
   Register,
-} from '../../services/auth'
+} from '../../../../services/auth'
 
 const loginUser = (data) => async (dispatch) => {
   try {
