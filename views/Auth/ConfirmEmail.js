@@ -5,12 +5,12 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native'
-import { loginWithUserId, confirmEmail } from '@mod/mobile-common/redux/actions/auth'
+import { loginWithUserId, confirmEmail } from '../../redux/actions/auth'
 import { useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
-import { AlertMessage } from '../../../../lib/components/utils/AlertMessage'
-import Message from '../../../../lib/components/utils/Message'
+import { AlertMessage } from '../../lib/components/utils/AlertMessage'
+import Message from '../../lib/components/utils/Message'
 import tw from 'twrnc'
 
 const ConfirmEmail = ({ route }) => {

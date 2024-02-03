@@ -11,9 +11,9 @@ import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import tw from 'twrnc'
 import GoogleSVG from '../../../../assets/images/GoogleSVG'
-import Message from '../../../../lib/components/utils/Message'
-import useHandleLogin from '../../../../lib/hooks/auth/useHandleLogin'
-import useHandleAuthGoogle from '../../../../lib/hooks/auth/useHandleAuthGoogle'
+import Message from '../../lib/components/utils/Message'
+import useHandleLogin from '../../lib/hooks/auth/useHandleLogin'
+import useHandleAuthGoogle from '../../lib/hooks/auth/useHandleAuthGoogle'
 import { useSelector } from "react-redux"
 
 const LoginScreen = () => {

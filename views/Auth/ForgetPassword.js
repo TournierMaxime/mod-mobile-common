@@ -10,10 +10,10 @@ import {
   forgetPassword,
   checkForgetPasswordCode,
   resetPassword,
-} from '@mod/mobile-common/redux/actions/auth'
+} from '../../redux/actions/auth'
 import { useTranslation } from 'react-i18next'
 import { useNavigation } from '@react-navigation/native'
-import { AlertMessage } from '../../../../lib/components/utils/AlertMessage'
+import { AlertMessage } from '../../lib/components/utils/AlertMessage'
 import tw from 'twrnc'
 
 const ForgetPasswordScreen = () => {
