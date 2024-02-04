@@ -4,6 +4,7 @@ import {
   passwordReducer,
   registerUserReducer
 } from './reducers/auth'
+import { favoritesReducer } from "./reducers/favorites"
 
 const authCommonReducer = {
   auth: authReducer,
@@ -12,4 +13,8 @@ const authCommonReducer = {
   confirmEmail: confirmEmailReducer
 }
 
-export { authCommonReducer }
+const favoriteReducer = {
+  favorites: favoritesReducer
+}
+
+export { authCommonReducer, favoriteReducer }
