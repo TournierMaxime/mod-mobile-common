@@ -1,7 +1,6 @@
 import {
   Login,
   Logout,
-  LoginWithUserId,
   ConfirmEmail,
   ForgetPasswordMobile,
   CheckForgetPasswordCodeMobile,
@@ -11,6 +10,7 @@ import {
 
 const loginUser = (data) => async (dispatch) => {
   try {
+    dispatch({ type: 'LOGIN_USER_REQUEST' })
     const response = await Login(data)
     dispatch({
       type: 'LOGIN_USER_SUCCESS',
@@ -26,25 +26,9 @@ const loginUser = (data) => async (dispatch) => {
   }
 }
 
-const loginWithUserId = (data) => async (dispatch) => {
-  try {
-    const response = await LoginWithUserId(data)
-    dispatch({
-      type: 'LOGIN_WITH_USERID_SUCCESS',
-      payload: response.data,
-    })
-    return response.data
-  } catch (error) {
-    dispatch({
-      type: 'LOGIN_WITH_USERID_FAILURE',
-      payload: error.message,
-    })
-    throw error
-  }
-}
-
 const logoutUser = () => async (dispatch) => {
   try {
+    dispatch({ type: 'LOGOUT_USER_REQUEST' })
     const response = Logout()
     dispatch({
       type: 'LOGOUT_USER_SUCCESS',
@@ -62,6 +46,7 @@ const logoutUser = () => async (dispatch) => {
 
 const confirmEmail = (userId, data) => async (dispatch) => {
   try {
+    dispatch({ type: 'CONFIRM_EMAIL_REQUEST' })
     const response = await ConfirmEmail(userId, data)
     dispatch({
       type: 'CONFIRM_EMAIL_SUCCESS',
@@ -79,6 +64,7 @@ const confirmEmail = (userId, data) => async (dispatch) => {
 
 const forgetPassword = (email) => async (dispatch) => {
   try {
+    dispatch({ type: 'FORGET_PASSWORD_REQUEST' })
     const response = await ForgetPasswordMobile(email)
     dispatch({ type: 'FORGET_PASSWORD_SUCCESS', payload: response.data })
     return response.data
@@ -91,6 +77,7 @@ const forgetPassword = (email) => async (dispatch) => {
 
 const checkForgetPasswordCode = (data) => async (dispatch) => {
   try {
+    dispatch({ type: 'CHECK_FORGET_PASSWORD_CODE_REQUEST' })
     const response = await CheckForgetPasswordCodeMobile(data)
     dispatch({
       type: 'CHECK_FORGET_PASSWORD_CODE_SUCCESS',
@@ -109,6 +96,7 @@ const checkForgetPasswordCode = (data) => async (dispatch) => {
 
 const resetPassword = (data) => async (dispatch) => {
   try {
+    dispatch({ type: 'RESET_PASSWORD_REQUEST' })
     const response = await ResetPasswordMobile(data)
     dispatch({ type: 'RESET_PASSWORD_SUCCESS', payload: response.data })
     return response.data
@@ -118,17 +106,18 @@ const resetPassword = (data) => async (dispatch) => {
   }
 }
 
-const createUser = (data) => async (dispatch) => {
+const register = (data) => async (dispatch) => {
   try {
+    dispatch({ type: 'REGISTER_USER_REQUEST' })
     const response = await Register(data)
     dispatch({
-      type: 'CREATE_USER_SUCCESS',
+      type: 'REGISTER_USER_SUCCESS',
       payload: response.data,
     })
     return response.data
   } catch (error) {
     dispatch({
-      type: 'CREATE_USER_FAILURE',
+      type: 'REGISTER_USER_FAILURE',
       payload: error.message,
     })
     throw error
@@ -137,24 +126,27 @@ const createUser = (data) => async (dispatch) => {
 
 const setUserWithLocalStorage = (localStorageData) => async (dispatch) => {
   try {
-    dispatch({ type: 'SET_USER_LOCALSTORAGE_SUCCESS', payload: localStorageData });
+    dispatch({ type: 'SET_USER_LOCALSTORAGE_REQUEST' })
+    dispatch({
+      type: 'SET_USER_LOCALSTORAGE_SUCCESS',
+      payload: localStorageData,
+    })
     console.log('Action', localStorageData)
     return localStorageData
   } catch (error) {
-    dispatch({type: 'SET_USER_LOCALSTORAGE_FAILURE', payload: error});
+    dispatch({ type: 'SET_USER_LOCALSTORAGE_FAILURE', payload: error })
     console.log(error)
     throw error
   }
-};
+}
 
 export {
   loginUser,
-  loginWithUserId,
+  register,
   logoutUser,
   confirmEmail,
   forgetPassword,
   checkForgetPasswordCode,
   resetPassword,
-  createUser,
-  setUserWithLocalStorage
+  setUserWithLocalStorage,
 }
