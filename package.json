@@ -6,8 +6,7 @@
   "license": "ISC",
   "exports": {
     "./lib/*": "./lib/*.js",
-    "./redux/*": "./redux/*.js",
-    "./views/*": "./views/*.js"
+    "./redux/*": "./redux/*.js"
   },
   "dependencies": {
     "@mod/mobile-tmdb": "file:../mod-mobile-tmdb",
