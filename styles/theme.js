@@ -5,6 +5,8 @@ const useDynamicThemeStyles = (darkMode) => ({
   backgroundTabColor: darkMode ? `rgb(30 41 59)` : `white`,
   borderColor: darkMode ? `border-slate-700` : `border-slate-100`,
   activeIcon: darkMode ? `teal` : `blue`,
+  tag: darkMode ? `bg-teal-700` : `bg-indigo-700`,
+  tagText: darkMode ? `text-white` : `text-white`,
 })
 
 export { useDynamicThemeStyles }
