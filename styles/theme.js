@@ -7,6 +7,7 @@ const useDynamicThemeStyles = (darkMode) => ({
   activeIcon: darkMode ? `teal` : `blue`,
   tag: darkMode ? `bg-teal-700` : `bg-indigo-700`,
   tagText: darkMode ? `text-white` : `text-white`,
+  dropdownIconColor: darkMode ? `#fff` : `#000`,
 })
 
 export { useDynamicThemeStyles }
