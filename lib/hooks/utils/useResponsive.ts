@@ -259,9 +259,9 @@ const useResponsive = () => {
 
   const detailsRole = (text: string) => {
     if (width >= breakpoints.tablet) {
-      return tw`font-medium text-xl px-4 text-justify leading-7 ${text}`
+      return tw`font-medium text-xl px-4 text-justify ${text}`
     } else {
-      return tw`font-medium text-base px-4 text-justify leading-7 ${text}`
+      return tw`font-medium text-base px-4 text-justify ${text}`
     }
   }
 
