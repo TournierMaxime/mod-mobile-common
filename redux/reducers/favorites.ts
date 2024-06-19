@@ -38,20 +38,29 @@ const favoritesReducer = (
       }
 
     case ADD_FAVORITE: {
-      const { id } = action.payload
-      if (!state.data.some((favorite) => favorite.id === id)) {
-        const updatedFavorites = [...state.data, action.payload.data]
-        return { ...state, data: updatedFavorites }
+      const favorite = action.payload
+      if (favorite && favorite.id) {
+        if (!state.data.some((f) => f.id === favorite.id)) {
+          const updatedFavorites = [...state.data, favorite]
+          return { ...state, data: updatedFavorites }
+        }
+      } else {
+        console.error("Invalid payload in ADD_FAVORITE action", action.payload)
       }
       return state
     }
 
     case REMOVE_FAVORITE: {
-      const { id } = action.payload
-      const updatedFavorites = state.data.filter(
-        (favorite) => favorite.id !== id,
-      )
-      return { ...state, data: updatedFavorites }
+      const id = action.payload
+      if (id) {
+        const updatedFavorites = state.data.filter(
+          (favorite) => favorite.id !== id,
+        )
+        return { ...state, data: updatedFavorites }
+      } else {
+        console.error("Invalid id in REMOVE_FAVORITE action", action.payload)
+      }
+      return state
     }
 
     case RESET:

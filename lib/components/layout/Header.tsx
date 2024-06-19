@@ -13,6 +13,7 @@ import { SerieStackParamList } from "../../../../../navigators/SerieStackNavigat
 import { MainStackParamList } from "../../../../../navigators/MainStackNavigator"
 import { ArticleStackParamList } from "../../../../../navigators/ArticleStackNavigator"
 import { AuthStackParamList } from "../../../../mod-mobile-auth/navigators/AuthStackNavigator"
+import useResponsive from "../../hooks/utils/useResponsive"
 
 interface HeaderProps {
   backButton: boolean
@@ -60,6 +61,8 @@ const Header: React.FC<HeaderProps> = ({
       navigation.goBack()
     }
   }
+
+  const { userIcon } = useResponsive()
 
   const NotAuthenticatedUser = () => {
     if (isAuthenticated === false) {
@@ -134,13 +137,7 @@ const Header: React.FC<HeaderProps> = ({
                   }
                 >
                   {user?.image ? (
-                    <Image
-                      source={{ uri: user?.image }}
-                      style={[
-                        tw`w-10 h-10 rounded-full`,
-                        { resizeMode: "contain" },
-                      ]}
-                    />
+                    <Image source={{ uri: user?.image }} style={userIcon()} />
                   ) : (
                     <FontAwesome5
                       name="user"

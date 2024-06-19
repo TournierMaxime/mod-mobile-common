@@ -104,12 +104,6 @@ const Tabs: React.FC<Props> = ({
   const darkMode = useSelector((state: RootState) => state.theme.darkMode)
   const { background, colorIcon, activeIcon } = useDynamicThemeStyles(darkMode)
 
-  if (!externalIds || !credits || !career || !serie) {
-    return null
-  }
-
-  console.log("movie", movie)
-
   return (
     <View style={tw`h-full`}>
       <View style={tw`flex-row ${background}`}>

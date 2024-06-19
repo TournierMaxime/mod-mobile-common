@@ -273,7 +273,26 @@ const useResponsive = () => {
     }
   }
 
+  const userIcon = () => {
+    if (width >= breakpoints.tablet) {
+      return [
+        tw`w-15 h-15 rounded-full`,
+        {
+          resizeMode: "cover",
+        },
+      ]
+    } else {
+      return [
+        tw`w-10 h-10 rounded-full`,
+        {
+          resizeMode: "cover",
+        },
+      ]
+    }
+  }
+
   return {
+    userIcon,
     cardDetails,
     imageArticle,
     authBtn,
