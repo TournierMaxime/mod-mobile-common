@@ -13,12 +13,26 @@ import { useDynamicThemeStyles } from "../../styles/theme"
 import { useSelector } from "react-redux"
 import Utils from "./Utils"
 import useResponsive from "@mod/mobile-common/lib/hooks/utils/useResponsive"
+import { RootState } from "../../../../store"
+
+type FormData = {
+  [key: string]: any
+}
+
+type SetFormData = React.Dispatch<React.SetStateAction<FormData>>
 
 class Form {
-  static inputText = (data, setData, label, name, value, readOnly) => {
+  static inputText = (
+    data: FormData,
+    setData: SetFormData,
+    label: string,
+    name: string,
+    value: string,
+    readOnly: boolean,
+  ) => {
     const { onChange } = useOnChange({ data, setData })
 
-    const darkMode = useSelector((state) => state.theme.darkMode)
+    const darkMode = useSelector((state: RootState) => state.theme.darkMode)
     const { text } = useDynamicThemeStyles(darkMode)
 
     const { fontSize, placeholder } = useResponsive()
@@ -29,16 +43,23 @@ class Form {
           placeholder={label}
           onChangeText={(value) => onChange({ name, value })}
           value={value}
-          readOnly={readOnly}
+          editable={!readOnly}
           style={placeholder()}
         />
       </View>
     )
   }
-  static inputNumber = (data, setData, label, value, name) => {
+
+  static inputNumber = (
+    data: FormData,
+    setData: SetFormData,
+    label: string,
+    value: string,
+    name: string,
+  ) => {
     const { onChange } = useOnChange({ data, setData })
 
-    const darkMode = useSelector((state) => state.theme.darkMode)
+    const darkMode = useSelector((state: RootState) => state.theme.darkMode)
     const { text } = useDynamicThemeStyles(darkMode)
 
     const { fontSize, placeholder } = useResponsive()
@@ -50,17 +71,28 @@ class Form {
           onChangeText={(value) => onChange({ name, value: Number(value) })}
           value={value}
           keyboardType="numeric"
+          maxLength={6}
           style={placeholder()}
         />
       </View>
     )
   }
-  static inputSwitch = (value, fct, key) => {
+
+  static inputSwitch = (
+    value: boolean,
+    fct: (key: string, value: boolean) => void,
+    key: string,
+  ) => {
     return (
       <Switch onValueChange={(newValue) => fct(key, newValue)} value={value} />
     )
   }
-  static uploadFile = (data, fct, t) => {
+
+  static uploadFile = (
+    data: string,
+    fct: () => void,
+    t: (key: string) => string,
+  ) => {
     const { btnSubmit } = useResponsive()
 
     return (
@@ -87,7 +119,12 @@ class Form {
       </View>
     )
   }
-  static submit = (label, fct, disabled) => {
+
+  static submit = (
+    label: string,
+    fct: () => Promise<any>,
+    disabled: boolean,
+  ) => {
     const { btnSubmit } = useResponsive()
 
     return (
@@ -100,11 +137,6 @@ class Form {
       >
         <Text style={btnSubmit()}>{label}</Text>
       </TouchableOpacity>
-    )
-  }
-  static inputSwitch = (value, fct, key) => {
-    return (
-      <Switch onValueChange={(newValue) => fct(key, newValue)} value={value} />
     )
   }
 }

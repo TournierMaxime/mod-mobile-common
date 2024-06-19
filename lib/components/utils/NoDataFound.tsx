@@ -1,10 +1,14 @@
 import React from "react"
 import { View, Text } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
-import Utils from "../../../lib/class/Utils"
+import Utils from "../../class/Utils"
 import tw from "twrnc"
 
-const NoDataFound = ({ message }) => {
+interface Props {
+  message: string
+}
+
+const NoDataFound: React.FC<Props> = ({ message }) => {
   const noDataFound = () => (
     <View
       style={[

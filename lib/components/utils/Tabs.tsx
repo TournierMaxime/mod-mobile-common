@@ -23,8 +23,72 @@ import SVGImdb from "@mod/mobile-tmdb/lib/components/SVGImdb"
 import IMDB from "@mod/mobile-tmdb/views/People/IMDB"
 import { useDynamicThemeStyles } from "@mod/mobile-common/styles/theme"
 import { useSelector } from "react-redux"
+import { RootState } from "store"
 
-const Tabs = ({
+interface ExternalIds {
+  twitter_id: string
+  facebook_id: string
+  instagram_id: string
+  tiktok_id: string
+  youtube_id: string
+}
+
+interface CastCrewItem {
+  id: number
+  name: string
+  profile_path: string
+  character: string
+  job: string
+  department: string
+}
+
+interface PeopleItem {
+  id: number
+  original_title: string
+  title: string
+  poster_path: string
+  release_date: string
+  character: string
+  name: string
+  first_air_date: string
+}
+
+interface Career {
+  cast: PeopleItem[]
+}
+
+interface Cast {
+  cast: CastCrewItem[]
+}
+
+interface Cast {
+  crew: CastCrewItem[]
+}
+
+interface Props {
+  id: number
+  movie?: {
+    vote_average: number
+  }
+  serie?: {
+    vote_average: number
+    id: number
+    seasons: []
+  }
+  people?: {
+    biography: string
+    imdb_id?: string
+  }
+  externalIds?: ExternalIds
+  t: (key: string) => string
+  language: string
+  selectedTab: string
+  setSelectedTab: (selectedTab: string) => void
+  credits?: Cast
+  career?: Career
+}
+
+const Tabs: React.FC<Props> = ({
   id,
   movie,
   serie,
@@ -37,8 +101,14 @@ const Tabs = ({
   credits,
   career,
 }) => {
-  const darkMode = useSelector((state) => state.theme.darkMode)
+  const darkMode = useSelector((state: RootState) => state.theme.darkMode)
   const { background, colorIcon, activeIcon } = useDynamicThemeStyles(darkMode)
+
+  if (!externalIds || !credits || !career || !serie) {
+    return null
+  }
+
+  console.log("movie", movie)
 
   return (
     <View style={tw`h-full`}>
@@ -241,9 +311,9 @@ const Tabs = ({
       </View>
       {selectedTab === "about" &&
         (movie ? (
-          <ProductionMovie id={id} movie={movie} language={language} t={t} />
+          <ProductionMovie movie={movie} language={language} t={t} />
         ) : selectedTab === "about" && serie ? (
-          <ProductionSerie id={id} serie={serie} language={language} t={t} />
+          <ProductionSerie serie={serie} t={t} />
         ) : selectedTab === "about" && people ? (
           <Informations t={t} externalIds={externalIds} people={people} />
         ) : null)}

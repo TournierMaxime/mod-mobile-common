@@ -1,14 +1,20 @@
 import React, { useState } from "react"
 import { View, TouchableOpacity, Text } from "react-native"
 import { Entypo } from "@expo/vector-icons"
-import Utils from "../../../lib/class/Utils"
+import Utils from "../../class/Utils"
 import tw from "twrnc"
 import { useDynamicThemeStyles } from "@mod/mobile-common/styles/theme"
 import { useSelector } from "react-redux"
 import useResponsive from "@mod/mobile-common/lib/hooks/utils/useResponsive"
+import { RootState } from "store"
 
-const Accordion = ({ children, title }) => {
-  const [expanded, setExpanded] = useState(false)
+interface Props {
+  children: React.ReactNode
+  title: string
+}
+
+const Accordion: React.FC<Props> = ({ children, title }) => {
+  const [expanded, setExpanded] = useState<boolean>(false)
 
   const { fontSize } = useResponsive()
 
@@ -16,7 +22,7 @@ const Accordion = ({ children, title }) => {
     setExpanded(!expanded)
   }
 
-  const darkMode = useSelector((state) => state.theme.darkMode)
+  const darkMode = useSelector((state: RootState) => state.theme.darkMode)
   const { borderColor, text, colorIcon } = useDynamicThemeStyles(darkMode)
 
   return (

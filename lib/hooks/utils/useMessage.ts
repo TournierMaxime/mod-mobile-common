@@ -1,9 +1,14 @@
 import { useState } from "react"
 
+interface Props {
+  success: string
+  error: string
+}
+
 const useMessage = () => {
-  const [message, setMessage] = useState({
-    success: null,
-    error: null,
+  const [message, setMessage] = useState<Props>({
+    success: "",
+    error: "",
   })
   return {
     message,

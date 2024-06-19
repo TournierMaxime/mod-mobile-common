@@ -5,12 +5,29 @@ import tw from "twrnc"
 import useResponsive from "@mod/mobile-common/lib/hooks/utils/useResponsive"
 import { useSelector } from "react-redux"
 import { useDynamicThemeStyles } from "@mod/mobile-common/styles/theme"
+import { RootState } from "store"
 
-const AlertModal = ({ visible, setVisible, action, message, success, t }) => {
+interface Props {
+  visible: boolean
+  setVisible: (visible: boolean) => void
+  action: () => void
+  message: string
+  success: boolean
+  t: (key: string) => string
+}
+
+const AlertModal: React.FC<Props> = ({
+  visible,
+  setVisible,
+  action,
+  message,
+  success,
+  t,
+}) => {
   const handleModalClose = () => {
     setVisible(false)
   }
-  const darkMode = useSelector((state) => state.theme.darkMode)
+  const darkMode = useSelector((state: RootState) => state.theme.darkMode)
   const { text } = useDynamicThemeStyles(darkMode)
 
   const { fontSize, btnSubmit } = useResponsive()

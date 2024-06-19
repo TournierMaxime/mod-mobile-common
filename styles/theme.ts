@@ -1,4 +1,4 @@
-const useDynamicThemeStyles = (darkMode) => ({
+const useDynamicThemeStyles = (darkMode: boolean) => ({
   background: darkMode ? `bg-slate-800` : `bg-white`,
   text: darkMode ? `text-white` : `text-black`,
   colorIcon: darkMode ? `white` : `black`,

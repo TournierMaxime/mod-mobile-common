@@ -2,17 +2,44 @@ import React, { useState } from "react"
 import { View, Text, TouchableOpacity, Platform, Image } from "react-native"
 import { FontAwesome5, FontAwesome, Ionicons } from "@expo/vector-icons"
 import SearchModal from "@mod/mobile-tmdb/lib/components/SearchModal"
-import { useNavigation } from "@react-navigation/native"
-import Utils from "../../../lib/class/Utils"
+import { NavigationProp, useNavigation } from "@react-navigation/native"
+import Utils from "../../class/Utils"
 import tw from "twrnc"
-import { useDynamicThemeStyles } from "../../../styles/theme.js"
+import { useDynamicThemeStyles } from "../../../styles/theme"
 import { useSelector } from "react-redux"
+import { RootState } from "store"
+import { MovieStackParamList } from "../../../../../navigators/MovieStackNavigator"
+import { SerieStackParamList } from "../../../../../navigators/SerieStackNavigator"
+import { MainStackParamList } from "../../../../../navigators/MainStackNavigator"
+import { ArticleStackParamList } from "../../../../../navigators/ArticleStackNavigator"
+import { AuthStackParamList } from "../../../../mod-mobile-auth/navigators/AuthStackNavigator"
 
-const Header = ({ backButton, isAuthenticated, title, type }) => {
-  const navigation = useNavigation()
+interface HeaderProps {
+  backButton: boolean
+  isAuthenticated: boolean
+  title: string
+  type: string
+}
 
-  const darkMode = useSelector((state) => state.theme.darkMode)
-  const user = useSelector((state) => state.auth.data?.user)
+const Header: React.FC<HeaderProps> = ({
+  backButton,
+  isAuthenticated,
+  title,
+  type,
+}) => {
+  const navigation =
+    useNavigation<
+      NavigationProp<
+        MovieStackParamList &
+          SerieStackParamList &
+          MainStackParamList &
+          ArticleStackParamList &
+          AuthStackParamList
+      >
+    >()
+
+  const darkMode = useSelector((state: RootState) => state.theme.darkMode)
+  const user = useSelector((state: RootState) => state.auth.data?.user)
 
   const logo = require("../../../../../assets/images/videotek_logo.webp")
 
@@ -40,8 +67,8 @@ const Header = ({ backButton, isAuthenticated, title, type }) => {
         <View>
           <View
             style={tw`${background} flex flex-row items-center justify-between p-2 shadow h-20 ${
-              darkMode === true ? `border-b border-slate-700` : null
-            } ${Platform.OS === "ios" ? `h-30` : null}`}
+              darkMode === true ? `border-b border-slate-700` : ""
+            } ${Platform.OS === "ios" ? `h-30` : ""}`}
           >
             {backButton ? (
               <View style={Platform.OS === "ios" ? tw`mt-8` : null}>
@@ -62,7 +89,7 @@ const Header = ({ backButton, isAuthenticated, title, type }) => {
 
             <Text
               style={tw`${text} text-2xl font-bold sm:text-3xl ${
-                Platform.OS === "ios" ? `mt-8` : null
+                Platform.OS === "ios" ? `mt-8` : ""
               }`}
             >
               {title}
@@ -80,8 +107,8 @@ const Header = ({ backButton, isAuthenticated, title, type }) => {
         <View>
           <View
             style={tw`${background} flex flex-row items-center justify-between h-20 p-2 shadow ${
-              darkMode === true ? `border-b border-slate-700` : null
-            } ${Platform.OS === "ios" ? `h-30` : null}`}
+              darkMode === true ? `border-b border-slate-700` : ""
+            } ${Platform.OS === "ios" ? `h-30` : ""}`}
           >
             {backButton ? (
               <View style={Platform.OS === "ios" ? tw`mt-8` : null}>
@@ -100,7 +127,11 @@ const Header = ({ backButton, isAuthenticated, title, type }) => {
               <View style={Platform.OS === "ios" ? tw`mt-8` : null}>
                 <TouchableOpacity
                   style={tw`p-2`}
-                  onPress={() => navigation.navigate("UserProfile")}
+                  onPress={() =>
+                    navigation.navigate("UserProfile", {
+                      userId: user.userId,
+                    })
+                  }
                 >
                   {user?.image ? (
                     <Image

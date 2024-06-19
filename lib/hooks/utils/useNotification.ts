@@ -1,14 +1,16 @@
 import { useEffect } from "react"
 import * as Notifications from "expo-notifications"
-import registerForPushNotificationsAsync from "../../../lib/components/utils/Notifications"
-import { useNavigation } from "@react-navigation/native"
+import registerForPushNotificationsAsync from "../../components/utils/Notifications"
+import { NavigationProp, useNavigation } from "@react-navigation/native"
 import { useSelector } from "react-redux"
+import { RootState } from "store"
+import { MainStackParamList } from "navigators/MainStackNavigator"
 
 const useNotification = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<MainStackParamList>>()
   const lastNotificationResponse = Notifications.useLastNotificationResponse()
 
-  const user = useSelector((state) => state.auth.data?.user)
+  const user = useSelector((state: RootState) => state.auth.data?.user)
 
   useEffect(() => {
     Notifications.setNotificationHandler({
@@ -69,7 +71,7 @@ const useNotification = () => {
     }
   }, [lastNotificationResponse])
 
-  const handleNotificationRedirect = (data) => {
+  const handleNotificationRedirect = (data: any) => {
     if (data) {
       navigation.navigate(data.redirect, {
         userId: data.userId ? data.userId : null,

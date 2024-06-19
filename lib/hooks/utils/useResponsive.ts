@@ -59,7 +59,7 @@ const useResponsive = () => {
     }
   }
 
-  const fontSize = (text) => {
+  const fontSize = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`font-medium text-2xl ${text}`
     } else {
@@ -75,7 +75,7 @@ const useResponsive = () => {
     }
   }
 
-  const notifications = (text) => {
+  const notifications = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`font-medium text-3xl mt-2 px-4 py-2 ${text}`
     } else {
@@ -83,7 +83,7 @@ const useResponsive = () => {
     }
   }
 
-  const notRegistered = (text) => {
+  const notRegistered = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`font-medium text-2xl text-center my-2 ${text}`
     } else {
@@ -91,7 +91,7 @@ const useResponsive = () => {
     }
   }
 
-  const forgotYourPassword = (text) => {
+  const forgotYourPassword = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`mt-4 mb-8 text-2xl font-medium text-center ${text}`
     } else {
@@ -99,7 +99,7 @@ const useResponsive = () => {
     }
   }
 
-  const deleteAccount = (text) => {
+  const deleteAccount = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`font-medium text-2xl ${text} text-red-500`
     } else {
@@ -131,7 +131,7 @@ const useResponsive = () => {
     }
   }
 
-  const headTitle = (text) => {
+  const headTitle = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`font-medium text-2xl ml-4 mt-4 ${text}`
     } else {
@@ -139,7 +139,7 @@ const useResponsive = () => {
     }
   }
 
-  const articleListTitle = (text, borderColor) => {
+  const articleListTitle = (text: string, borderColor: string) => {
     if (width >= breakpoints.tablet) {
       return tw`${text} font-normal text-3xl leading-normal text-justify w-full ${borderColor}`
     } else {
@@ -147,7 +147,7 @@ const useResponsive = () => {
     }
   }
 
-  const articleTitle = (text) => {
+  const articleTitle = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`${text} font-medium text-4xl text-justify leading-normal`
     } else {
@@ -155,7 +155,7 @@ const useResponsive = () => {
     }
   }
 
-  const articleIntro = (text) => {
+  const articleIntro = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`${text} italic text-3xl mt-4 text-justify leading-normal`
     } else {
@@ -163,7 +163,7 @@ const useResponsive = () => {
     }
   }
 
-  const articleParagraph = (text) => {
+  const articleParagraph = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`${text} font-normal text-3xl mt-4 text-justify leading-normal`
     } else {
@@ -171,7 +171,7 @@ const useResponsive = () => {
     }
   }
 
-  const articleUpdate = (text) => {
+  const articleUpdate = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`${text} font-normal text-3xl mt-4`
     } else {
@@ -179,7 +179,7 @@ const useResponsive = () => {
     }
   }
 
-  const privacyPolicyTitle = (text) => {
+  const privacyPolicyTitle = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`${text} font-medium text-4xl text-justify leading-normal mb-4`
     } else {
@@ -187,7 +187,7 @@ const useResponsive = () => {
     }
   }
 
-  const privacyPolicySubTitle = (text) => {
+  const privacyPolicySubTitle = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`${text} font-medium text-3xl mb-4 text-justify leading-normal`
     } else {
@@ -195,7 +195,7 @@ const useResponsive = () => {
     }
   }
 
-  const privacyPolicyParagraph = (text) => {
+  const privacyPolicyParagraph = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`${text} font-normal text-3xl mb-4 text-justify leading-normal`
     } else {
@@ -203,7 +203,7 @@ const useResponsive = () => {
     }
   }
 
-  const privacyPolicyList = (text) => {
+  const privacyPolicyList = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`font-normal text-3xl ${text} my-px px-4 leading-normal`
     } else {
@@ -211,7 +211,7 @@ const useResponsive = () => {
     }
   }
 
-  const privacyPolicyUpdate = (text) => {
+  const privacyPolicyUpdate = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`${text} font-normal text-3xl mb-4`
     } else {
@@ -249,7 +249,7 @@ const useResponsive = () => {
     }
   }
 
-  const plotAndBio = (text) => {
+  const plotAndBio = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`${text} font-medium text-2xl rounded-md mr-auto my-2 w-auto px-4 text-justify leading-7`
     } else {
@@ -257,7 +257,7 @@ const useResponsive = () => {
     }
   }
 
-  const detailsRole = (text) => {
+  const detailsRole = (text: string) => {
     if (width >= breakpoints.tablet) {
       return tw`font-medium text-xl px-4 text-justify leading-7 ${text}`
     } else {
@@ -265,7 +265,7 @@ const useResponsive = () => {
     }
   }
 
-  const cardDetails = (text) => {
+  const cardDetails = () => {
     if (width >= breakpoints.tablet) {
       return tw`border-b border-r border-l border-slate-200 rounded-b-md max-w-90 h-40`
     } else {

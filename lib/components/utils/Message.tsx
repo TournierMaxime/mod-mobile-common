@@ -3,7 +3,12 @@ import { View, Text } from "react-native"
 import tw from "twrnc"
 import useResponsive from "@mod/mobile-common/lib/hooks/utils/useResponsive"
 
-const Message = ({ message, priority }) => {
+interface Props {
+  message: string
+  priority: string
+}
+
+const Message: React.FC<Props> = ({ message, priority }) => {
   const { btnSubmit } = useResponsive()
   switch (priority) {
     case "info":

@@ -5,9 +5,30 @@ import { useTranslation } from "react-i18next"
 import { allFavorites } from "@mod/mobile-common/redux/actions/favorites"
 import { logoutUser } from "@mod/mobile-auth/redux/actions/auth"
 import { toggleTheme } from "@mod/mobile-common/redux/actions/theme"
+import { AppDispatch } from "store"
 
-const useLocalStorage = ({ onLoginSuccess }) => {
-  const dispatch = useDispatch()
+interface UserData {
+  userId: string
+  email: string
+  password: string
+  pseudo: string
+  verified: boolean
+  verificationCode: number
+  forgetPassword: number
+  createdAt: string
+  provider: string
+  expoPushToken: string
+  image: string
+  lang: string
+  isEmailActive: boolean
+}
+
+interface Props {
+  onLoginSuccess: (userData: UserData) => void
+}
+
+const useLocalStorage = ({ onLoginSuccess }: Props) => {
+  const dispatch: AppDispatch = useDispatch()
   const { i18n } = useTranslation()
   const [lang, setLang] = useState(i18n.language)
 
@@ -20,7 +41,7 @@ const useLocalStorage = ({ onLoginSuccess }) => {
       } else {
         dispatch(logoutUser())
       }
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error)
     }
   }
@@ -32,7 +53,7 @@ const useLocalStorage = ({ onLoginSuccess }) => {
         setLang(storedLang)
         i18n.changeLanguage(storedLang)
       }
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error)
     }
   }
@@ -44,7 +65,7 @@ const useLocalStorage = ({ onLoginSuccess }) => {
         const parse = JSON.parse(storedFavorites)
         await dispatch(allFavorites(parse))
       }
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error)
     }
   }

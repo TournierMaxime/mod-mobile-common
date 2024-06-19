@@ -5,9 +5,9 @@
   "author": "",
   "license": "ISC",
   "exports": {
-    "./lib/*": "./lib/*.js",
-    "./redux/*": "./redux/*.js",
-    "./styles/*": "./styles/*.js"
+    "./lib/*": "./lib/*",
+    "./redux/*": "./redux/*",
+    "./styles/*": "./styles/*"
   },
   "dependencies": {
     "@mod/mobile-tmdb": "file:../mod-mobile-tmdb"

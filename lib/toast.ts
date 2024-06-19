@@ -1,10 +1,10 @@
 import { AxiosError } from "axios"
 import Toast from "react-native-root-toast"
-import { AntDesign } from "@expo/vector-icons"
-import Utils from "./class/Utils"
 
-export const toast = (fn) => {
-  return async (...args) => {
+type AsyncFunction = (...args: any[]) => Promise<any>
+
+export const toast = <T extends AsyncFunction>(fn: T): T => {
+  return (async (...args: Parameters<T>): Promise<ReturnType<T> | null> => {
     try {
       const result = await fn(...args)
 
@@ -24,7 +24,7 @@ export const toast = (fn) => {
       }
 
       return result
-    } catch (e) {
+    } catch (e: any) {
       console.error(e, e.stack)
 
       let message = "\u26A0 : "
@@ -62,5 +62,5 @@ export const toast = (fn) => {
 
       return null
     }
-  }
+  }) as T
 }
