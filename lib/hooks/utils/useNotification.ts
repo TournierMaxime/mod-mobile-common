@@ -22,7 +22,7 @@ const useNotification = () => {
       }),
     })
 
-    if (!user.expoPushToken && NODE_ENV === "production") {
+    if (!user?.expoPushToken && NODE_ENV === "production") {
       // Enregistrer pour les notifications push dès le chargement du composant
       registerForPushNotificationsAsync()
     }

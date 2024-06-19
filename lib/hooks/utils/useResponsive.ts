@@ -12,6 +12,21 @@ const useResponsive = () => {
 
   const { width } = Dimensions.get("window")
 
+  let trailer = {
+    dimension: {
+      w: 0,
+      h: 0,
+    },
+  }
+
+  if (width >= breakpoints.tablet) {
+    trailer.dimension.w = Utils.moderateScale(500)
+    trailer.dimension.h = Utils.moderateScale(500)
+  } else {
+    trailer.dimension.w = Utils.moderateScale(380)
+    trailer.dimension.h = Utils.moderateScale(380)
+  }
+
   const imageArticle = () => {
     if (width >= breakpoints.tablet) {
       return [tw`w-full h-99 mt-4 rounded-md`, { objectFit: "cover" }]
@@ -47,7 +62,15 @@ const useResponsive = () => {
     if (width >= breakpoints.tablet) {
       return [tw`w-70 h-90 rounded-t-md`, { resizeMode: "cover" }]
     } else {
-      return [tw`w-40 h-60 rounded-t-md`, { resizeMode: "cover" }]
+      return [tw`w-50 h-60 rounded-t-md`, { resizeMode: "cover" }]
+    }
+  }
+
+  const episodeDetails = () => {
+    if (width >= breakpoints.tablet) {
+      return [tw`w-70 h-90 rounded-md`, { resizeMode: "cover" }]
+    } else {
+      return [tw`w-30 h-40 rounded-md`, { resizeMode: "cover" }]
     }
   }
 
@@ -259,9 +282,15 @@ const useResponsive = () => {
 
   const detailsRole = (text: string) => {
     if (width >= breakpoints.tablet) {
-      return tw`font-medium text-xl px-4 text-justify ${text}`
+      return [
+        tw`font-medium text-xl px-4 text-justify ${text}`,
+        { maxWidth: Utils.moderateScale(120) },
+      ]
     } else {
-      return tw`font-medium text-base px-4 text-justify ${text}`
+      return [
+        tw`font-medium text-base px-2 text-justify ${text}`,
+        { maxWidth: Utils.moderateScale(180) },
+      ]
     }
   }
 
@@ -292,6 +321,8 @@ const useResponsive = () => {
   }
 
   return {
+    episodeDetails,
+    trailer,
     userIcon,
     cardDetails,
     imageArticle,
