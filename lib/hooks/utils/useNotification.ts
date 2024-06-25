@@ -5,7 +5,6 @@ import { NavigationProp, useNavigation } from "@react-navigation/native"
 import { useSelector } from "react-redux"
 import { RootState } from "store"
 import { MainStackParamList } from "navigators/MainStackNavigator"
-import { NODE_ENV } from "@env"
 
 const useNotification = () => {
   const navigation = useNavigation<NavigationProp<MainStackParamList>>()
@@ -22,7 +21,7 @@ const useNotification = () => {
       }),
     })
 
-    if (!user?.expoPushToken && NODE_ENV === "production") {
+    if (!user?.expoPushToken) {
       // Enregistrer pour les notifications push dès le chargement du composant
       registerForPushNotificationsAsync()
     }

@@ -166,7 +166,7 @@ const useResponsive = () => {
     if (width >= breakpoints.tablet) {
       return tw`${text} font-normal text-3xl leading-normal text-justify w-full ${borderColor}`
     } else {
-      return tw`${text} font-normal text-xl leading-normal text-justify w-full ${borderColor}`
+      return tw`${text} font-normal text-lg leading-normal text-justify w-full ${borderColor}`
     }
   }
 

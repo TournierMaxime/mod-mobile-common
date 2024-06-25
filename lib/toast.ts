@@ -11,7 +11,7 @@ export const toast = <T extends AsyncFunction>(fn: T): T => {
       if (result && result.toastMessage) {
         Toast.show("\u2713 : " + result.toastMessage, {
           duration: Toast.durations.LONG,
-          position: Toast.positions.CENTER,
+          position: Toast.positions.BOTTOM,
           opacity: 1,
           animation: true,
           backgroundColor: "green",
@@ -49,7 +49,7 @@ export const toast = <T extends AsyncFunction>(fn: T): T => {
 
       Toast.show(message, {
         duration: Toast.durations.LONG,
-        position: Toast.positions.CENTER,
+        position: Toast.positions.BOTTOM,
         animation: true,
         opacity: 1,
         backgroundColor: "red",
