@@ -11,6 +11,8 @@ import {
   deleteRecommendation,
 } from "@mod/mobile-user/redux/actions/recommendations"
 import { RootState, AppDispatch } from "store"
+import { toast } from "../../toast"
+import { useTranslation } from "react-i18next"
 
 interface FavoriteData {
   id: number
@@ -28,6 +30,8 @@ interface Props {
 const useHandleFavorites = ({ favorites, data }: Props) => {
   const dispatch: AppDispatch = useDispatch()
 
+  const { t } = useTranslation()
+
   const userId = useSelector((state: RootState) => state.auth.data.user.userId)
 
   // Check if the item is a favorite based on whether data is defined and finding it in favorites
@@ -42,7 +46,7 @@ const useHandleFavorites = ({ favorites, data }: Props) => {
     await AsyncStorage.setItem("favorites", JSON.stringify(favorites))
   }
 
-  const handleFavorite = async () => {
+  const handleFavorite = toast(async () => {
     if (!data) {
       console.error("Data is undefined")
       return
@@ -95,7 +99,10 @@ const useHandleFavorites = ({ favorites, data }: Props) => {
         await dispatch(addFavorite(updatedData))
       }
     }
-  }
+    return {
+      toastMessage: !isFavorite ? t("actions.addedToFavorite") : null,
+    }
+  })
 
   const removeFromFavorite = async (id: number) => {
     await dispatch(removeFavorite(id))

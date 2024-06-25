@@ -73,6 +73,7 @@ interface Props {
   serie?: {
     vote_average: number
     id: number
+    index: number
     seasons: []
   }
   people?: {
@@ -106,7 +107,7 @@ const Tabs: React.FC<Props> = ({
 
   return (
     <View style={tw`h-full`}>
-      <View style={tw`flex-row ${background}`}>
+      <View style={tw`flex-row items-center ${background}`}>
         {movie || serie || people ? (
           <TouchableOpacity
             style={tw`flex-1 p-4 items-center`}
