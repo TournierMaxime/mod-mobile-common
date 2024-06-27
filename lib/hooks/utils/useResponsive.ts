@@ -68,9 +68,9 @@ const useResponsive = () => {
 
   const episodeDetails = () => {
     if (width >= breakpoints.tablet) {
-      return [tw`w-70 h-90 rounded-md`, { resizeMode: "cover" }]
+      return [tw`w-full h-90 rounded-md`, { resizeMode: "cover" }]
     } else {
-      return [tw`w-30 h-40 rounded-md`, { resizeMode: "cover" }]
+      return [tw`w-full h-60 rounded-md`, { resizeMode: "cover" }]
     }
   }
 
@@ -280,6 +280,14 @@ const useResponsive = () => {
     }
   }
 
+  const overView = (text: string) => {
+    if (width >= breakpoints.tablet) {
+      return tw`${text} font-normal text-2xl rounded-md mr-auto w-auto text-justify leading-7`
+    } else {
+      return tw`${text} font-normal text-lg rounded-md mr-auto w-auto text-justify leading-7`
+    }
+  }
+
   const detailsRole = (text: string) => {
     if (width >= breakpoints.tablet) {
       return [
@@ -296,9 +304,9 @@ const useResponsive = () => {
 
   const cardDetails = () => {
     if (width >= breakpoints.tablet) {
-      return tw`border-b border-r border-l border-slate-200 rounded-b-md max-w-90 h-40`
+      return tw`flex flex-wrap border-b border-r border-l border-slate-200 rounded-b-md max-w-90 h-40`
     } else {
-      return tw`border-b border-r border-l border-slate-200 rounded-b-md max-w-90 h-30`
+      return tw`flex flex-wrap border-b border-r border-l border-slate-200 rounded-b-md max-w-90 h-40`
     }
   }
 
@@ -321,6 +329,7 @@ const useResponsive = () => {
   }
 
   return {
+    overView,
     episodeDetails,
     trailer,
     userIcon,
